@@ -59,7 +59,7 @@ class LoginActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    fun setupAction() {
+    private fun setupAction() {
         binding.loginButton.setOnClickListener {
             val email = binding.emailEditText.text.toString()
             val password = binding.passwordEditText.text.toString()
