@@ -10,8 +10,8 @@ import com.bumptech.glide.Glide
 import com.example.mystoryapp.R
 import com.example.mystoryapp.data.retrofit.response.ListStoryItem
 
-class StoryAdapter (
-    private val storiesList: MutableList<ListStoryItem>,
+class StoryAdapter(
+    private val storiesList: List<ListStoryItem>,
     private val listener: OnAdapterListener
 ) : RecyclerView.Adapter<StoryAdapter.ViewHolder>() {
 
