@@ -71,6 +71,7 @@ class LoginActivity : AppCompatActivity() {
                     binding.passwordEditText.error = "Password harus diisi"
                 } else-> {
                     loginViewModel.login(email, password)
+                    ShowLoading(true)
                     observeLoginResponse()
                 }
             }
@@ -91,6 +92,7 @@ class LoginActivity : AppCompatActivity() {
                             Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                         startActivity(intent)
                         finish()
+                        ShowLoading(false)
                     }
                     create()
                     show()

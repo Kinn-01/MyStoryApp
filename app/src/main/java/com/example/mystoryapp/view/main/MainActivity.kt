@@ -19,6 +19,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mystoryapp.data.adapter.StoryAdapter
 import com.example.mystoryapp.data.retrofit.response.ListStoryItem
+import com.example.mystoryapp.view.detailStory.DetailStoryActivity
 import com.example.mystoryapp.view.login.LoginActivity
 import com.example.mystoryapp.view.welcome.WelcomeActivity
 import kotlinx.coroutines.CoroutineScope
@@ -120,6 +121,7 @@ class MainActivity : AppCompatActivity() {
                 this.storiesAdapter = StoryAdapter(listStory, object : StoryAdapter.OnAdapterListener {
                     override fun onClick(story: ListStoryItem) {
                         // Implementasi aksi saat item diklik
+                        navigateToDetailStory(story)
                     }
                 })
                 binding.rvStories.adapter = storiesAdapter
@@ -140,6 +142,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun navigateToDetailStory(story: ListStoryItem) {
+        val intent = Intent(this@MainActivity, DetailStoryActivity::class.java)
+        intent.putExtra(DetailStoryActivity.EXTRA_PHOTO_URL, story.photoUrl)
+        intent.putExtra(DetailStoryActivity.EXTRA_CREATED_AT, story.createdAt)
+        intent.putExtra(DetailStoryActivity.EXTRA_NAME, story.name)
+        intent.putExtra(DetailStoryActivity.EXTRA_DESCRIPTION, story.description)
+        intent.putExtra(DetailStoryActivity.EXTRA_LON, story.lon)
+        intent.putExtra(DetailStoryActivity.EXTRA_ID, story.id)
+        intent.putExtra(DetailStoryActivity.EXTRA_LAT, story.lat)
+        startActivity(intent)
+    }
+
     private fun setupView() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -152,5 +166,4 @@ class MainActivity : AppCompatActivity() {
         }
         supportActionBar?.hide()
     }
-
 }

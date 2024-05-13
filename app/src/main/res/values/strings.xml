@@ -16,4 +16,8 @@
     <string name="add_Story_text">Tombol Add Story</string>
     <string name="story_image">Image Story</string>
     <string name="alert_invalid_email">Email Invalid</string>
+    <string name="tanggal_dibuat">Tanggal Dibuat</string>
+    <string name="nama_pengarang">Nama Pengarang</string>
+    <string name="deskripsi_cerita">Deskripsi Cerita</string>
+    <string name="detailStory">Detail Story</string>
 </resources>

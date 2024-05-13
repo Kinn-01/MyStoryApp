@@ -13,12 +13,14 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.Observer
 import com.example.mystoryapp.R
 import com.example.mystoryapp.data.viewmodel.RegisterViewModel
 import com.example.mystoryapp.databinding.ActivitySignupBinding
 import com.example.mystoryapp.view.ViewModelFactory
 import com.example.mystoryapp.view.login.LoginActivity
 import com.example.mystoryapp.view.main.MainActivity
+import com.google.android.material.snackbar.Snackbar
 
 class RegisterActivity : AppCompatActivity() {
 
@@ -27,7 +29,6 @@ class RegisterActivity : AppCompatActivity() {
     private val viewModel by viewModels<RegisterViewModel> {
         ViewModelFactory.getInstance(this)
     }
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -41,7 +42,6 @@ class RegisterActivity : AppCompatActivity() {
 
         setupView()
         setupAction()
-//        setViewModel()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -63,18 +63,6 @@ class RegisterActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    private fun setViewModel() {
-        viewModel.registerResponse.observe(this) {
-            if (it.error == true) {
-                Toast.makeText(this, it.message, Toast.LENGTH_LONG).show()
-            } else {
-                Toast.makeText(this, "Register success", Toast.LENGTH_LONG).show()
-                startActivity(Intent(this, LoginActivity::class.java))
-                finish()
-            }
-        }
-    }
-
    private fun setupAction() {
         binding.signupButton.setOnClickListener {
             val name = binding.nameEditText.text.toString()
@@ -91,28 +79,32 @@ class RegisterActivity : AppCompatActivity() {
                 password.isEmpty()-> {
                     binding.passwordEditText.error = "Password harus diisi"
                 } else -> {
+                    isShowLoading(true)
                     viewModel.register(name, email, password)
-                    AlertDialog.Builder(this).apply {
-                        setTitle("Yeah!")
-                        setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan mulai berbagi cerita.")
-                        setPositiveButton("Lanjut") { _, _ ->
-                            val intent = Intent(context, LoginActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-                            startActivity(intent)
-                            finish()
+                    viewModel.isLoading.observe(this, Observer { success ->
+                        if (success) {
+                            AlertDialog.Builder(this).apply {
+                                setTitle("Yeah!")
+                                setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan mulai berbagi cerita.")
+                                setPositiveButton("Lanjut") { _, _ ->
+                                    val intent = Intent(context, LoginActivity::class.java)
+                                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+                                    startActivity(intent)
+                                    finish()
+                                }
+                                create()
+                                show()
+                            }
+                        } else {
+                            Snackbar.make(binding.root, "Registrasi gagal, Silahkan coba lagi!!.", Snackbar.LENGTH_SHORT).show()
                         }
-                        create()
-                        show()
-                    }
+                        isShowLoading(false)
+                    })
+                    setupView()
                 }
-            }
-            viewModel.isLoading.observe(this) {
-                isShowLoading(it)
             }
         }
     }
-
-
     private fun isShowLoading(isLoading: Boolean){
         if (isLoading){
             binding.progressBar.visibility = View.VISIBLE
