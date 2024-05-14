@@ -79,8 +79,8 @@ class RegisterActivity : AppCompatActivity() {
                 } else -> {
                     isShowLoading(true)
                     viewModel.register(name, email, password)
-                    viewModel.isLoading.observe(this, Observer { success ->
-                        if (success) {
+                    viewModel.isLoading.observe(this, Observer { isLoading ->
+                        if (isLoading) {
                             AlertDialog.Builder(this).apply {
                                 setTitle("Yeah!")
                                 val message = getString(R.string.account_created_message, email)

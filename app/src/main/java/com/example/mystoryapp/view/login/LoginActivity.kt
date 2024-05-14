@@ -1,5 +1,7 @@
 package com.example.mystoryapp.view.login
 
+import android.animation.AnimatorSet
+import android.animation.ObjectAnimator
 import android.content.Intent
 import android.os.Build
 import android.os.Bundle
@@ -35,6 +37,7 @@ class LoginActivity : AppCompatActivity() {
 
         setupView()
         setupAction()
+        playAnimation()
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
@@ -69,10 +72,13 @@ class LoginActivity : AppCompatActivity() {
                 } else-> {
                     loginViewModel.login(email, password)
                     ShowLoading(true)
-                    observeLoginResponse()
+
                 }
             }
         }
+        observeLoginResponse()
+        observeLoadingState()
+        observeErrorState()
     }
 
     private fun observeLoginResponse() {
@@ -98,11 +104,64 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    private fun observeLoadingState() {
+        loginViewModel.isLoading.observe(this) { isLoading ->
+            ShowLoading(isLoading)
+        }
+    }
+
+    private fun observeErrorState() {
+        loginViewModel.isError.observe(this) { errorMessage ->
+            if (!errorMessage.isNullOrEmpty()) {
+                showError(errorMessage)
+                ShowLoading(false)
+            }
+        }
+    }
+
+    private fun showError(errorMessage: String) {
+        Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
+    }
+
     private fun ShowLoading(isLoading: Boolean){
         if (isLoading){
             binding.progressBar.visibility = View.VISIBLE
         }else{
             binding.progressBar.visibility = View.INVISIBLE
         }
+    }
+
+    private fun playAnimation() {
+        ObjectAnimator.ofFloat(binding.imageView, View.TRANSLATION_X, -30f, 30f).apply {
+            duration = 6000
+            repeatCount = ObjectAnimator.INFINITE
+            repeatMode = ObjectAnimator.REVERSE
+        }.start()
+
+        val title = ObjectAnimator.ofFloat(binding.titleTextView, View.ALPHA, 1f).setDuration(100)
+        val message =
+            ObjectAnimator.ofFloat(binding.messageTextView, View.ALPHA, 1f).setDuration(100)
+        val emailTextView =
+            ObjectAnimator.ofFloat(binding.emailTextView, View.ALPHA, 1f).setDuration(100)
+        val emailEditTextLayout =
+            ObjectAnimator.ofFloat(binding.emailEditTextLayout, View.ALPHA, 1f).setDuration(100)
+        val passwordTextView =
+            ObjectAnimator.ofFloat(binding.passwordTextView, View.ALPHA, 1f).setDuration(100)
+        val passwordEditTextLayout =
+            ObjectAnimator.ofFloat(binding.passwordEditTextLayout, View.ALPHA, 1f).setDuration(100)
+        val login = ObjectAnimator.ofFloat(binding.loginButton, View.ALPHA, 1f).setDuration(100)
+
+        AnimatorSet().apply {
+            playSequentially(
+                title,
+                message,
+                emailTextView,
+                emailEditTextLayout,
+                passwordTextView,
+                passwordEditTextLayout,
+                login
+            )
+            startDelay = 100
+        }.start()
     }
 }

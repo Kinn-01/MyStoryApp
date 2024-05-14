@@ -18,10 +18,10 @@ class RegisterViewModel(private val userRepository: UserRepository) : ViewModel(
     val registerResponse: LiveData<RegisterResponse> = _registerResponse
 
     private val _isLoading = MutableLiveData<Boolean>()
-    val isLoading: LiveData<Boolean> get() = _isLoading
+    val isLoading: LiveData<Boolean> = _isLoading
 
     private val _isError = MutableLiveData<String>()
-    val isError: LiveData<String>get() = _isError
+    val isError: LiveData<String> = _isError
 
     fun register(name: String, email: String, password: String) {
         _isLoading.postValue(true)

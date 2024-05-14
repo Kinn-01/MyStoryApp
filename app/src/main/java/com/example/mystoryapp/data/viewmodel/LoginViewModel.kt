@@ -39,20 +39,15 @@ class LoginViewModel(private val UserRepository: UserRepository) : ViewModel() {
                 )
                 _isLoading.postValue(false)
                 _loginResponse.postValue(response)
-                Log.d(TAG, "isSuccess ${response.message}")
             } catch (e: HttpException) {
-//                _isLoading.value = false
-//                val jsonInString = e.response()?.errorBody()?.string()
-//                val errorBody = Gson().fromJson(jsonInString, ErrorResponse::class.java)
-//                val errorMessage = errorBody.message
-//                _isError.value = errorMessage ?: "Unknown error"
                 _isLoading.postValue(false)
                 val jsonInString = e.response()?.errorBody()?.string()
                 val errorBody = Gson().fromJson(jsonInString, LoginResponse::class.java)
                 val errorMessage = errorBody.message
+                _isError.postValue(errorMessage)
+            } catch (e: Exception) {
                 _isLoading.postValue(false)
-                _loginResponse.postValue(errorBody)
-                Log.d(TAG, "onError: $errorMessage")
+                _isError.postValue(e.message ?: "An unexpected error occurred")
             }
         }
     }
