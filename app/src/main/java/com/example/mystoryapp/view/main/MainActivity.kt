@@ -19,6 +19,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mystoryapp.data.adapter.StoryAdapter
 import com.example.mystoryapp.data.retrofit.response.ListStoryItem
+import com.example.mystoryapp.view.addStory.StoryAddActivity
 import com.example.mystoryapp.view.detailStory.DetailStoryActivity
 import com.example.mystoryapp.view.login.LoginActivity
 import com.example.mystoryapp.view.welcome.WelcomeActivity
@@ -51,6 +52,10 @@ class MainActivity : AppCompatActivity() {
             }
         }
         observeListStory()
+
+        binding.fabAdd.setOnClickListener {
+            startActivity(Intent(this@MainActivity, StoryAddActivity::class.java))
+        }
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())

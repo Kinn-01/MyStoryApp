@@ -20,4 +20,10 @@
     <string name="nama_pengarang">Nama Pengarang</string>
     <string name="deskripsi_cerita">Deskripsi Cerita</string>
     <string name="detailStory">Detail Story</string>
+    <string name="upload">Upload\n</string>
+    <string name="description">description</string>
+    <string name="image_preview">Image Preview</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="empty_image_warning">Gambar tidak boleh kosong</string>
 </resources>

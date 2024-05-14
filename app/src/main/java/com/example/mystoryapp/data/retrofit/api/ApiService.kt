@@ -40,8 +40,6 @@ interface ApiService {
         @Header("Authorization") token: String,
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
-        @Part("Iat") Iat: Double? = null,
-        @Part("Ion") Ion: Double? = null
     ): FileUploadResponse
 
 //    // Get Story
