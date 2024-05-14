@@ -23,7 +23,6 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
 
     private val _Message = MutableLiveData<String>()
     val  message: LiveData<String> get() = _Message
-
     suspend fun getAllStory() {
         try {
             val tokenStory = repository.getSession().first().token

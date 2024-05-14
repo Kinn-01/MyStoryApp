@@ -6,7 +6,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mystoryapp.data.repository.UserRepository
 import com.example.mystoryapp.data.retrofit.response.ErrorResponse
-import com.example.mystoryapp.data.retrofit.response.LoginResponse
 import com.example.mystoryapp.data.retrofit.response.RegisterResponse
 import com.google.gson.Gson
 import kotlinx.coroutines.launch

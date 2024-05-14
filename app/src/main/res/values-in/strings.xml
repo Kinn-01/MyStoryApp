@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Ceritaku</string>
+    <string name="signup">Daftar</string>
+    <string name="login">Masuk</string>
+    <string name="message_welcome_page">Bercerita adalah seni merangkai kata-kata untuk menghidupkan gambaran dan mengajak pendengar atau pembaca memasuki dunia imaginasi.</string>
+    <string name="title_welcome_page">Selamat datang di MyStoryApp!</string>
+    <string name="title_signup_page">Lengkapi data dirimu di bawah ini ya</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="message_login_page">Masukkan dulu datamu ya</string>
+    <string name="title_login_page">Sudah siap untuk berbagi cerita?</string>
+    <string name="name">Nama</string>
+    <string name="logout">Keluar</string>
+    <string name="add_Story_text">Tombol Tambah Cerita</string>
+    <string name="story_image">Gambar Cerita</string>
+    <string name="alert_invalid_email">Email Tidak Valid</string>
+    <string name="tanggal_dibuat">Tanggal Dibuat</string>
+    <string name="nama_pengarang">Nama Pengarang</string>
+    <string name="deskripsi_cerita">Deskripsi Cerita</string>
+    <string name="detailStory">Detail Cerita</string>
+    <string name="upload">Upload\n</string>
+    <string name="description">description</string>
+    <string name="image_preview">Preview Gambar</string>
+    <string name="camera">Kamera</string>
+    <string name="gallery">Galeri</string>
+    <string name="empty_image_warning">Gambar tidak boleh kosong</string>
+    <string name="multiLanguage">Pengaturan Bahasa</string>
+    <string name="exitConfirm">Konfirmasi Keluar</string>
+    <string name="exit">Apakah Anda yakin ingin keluar?</string>
+    <string name="yes">Ya</string>
+    <string name="no">Tidak</string>
+    <string name="emptyStory">Empty story list</string>
+    <string name="emailValidation">Email harus diisi</string>
+    <string name="nameValidation">Nama harus diisi</string>
+    <string name="passwordValidation">Password harus diisi</string>
+    <string name="successLogin">Login Berhasil</string>
+    <string name="next">Lanjut</string>
+    <string name="account_created_message">Akun dengan %1$s sudah jadi nih. Yuk, login dan mulai berbagi cerita.</string>
+    <string name="registerFailed">Registrasi gagal, Silahkan coba lagi!!!</string>
+    <string name="successUpload">Upload Berhasil</string>
+    <string name="succesStoryUpload">Cerita Berhasil Diunggah</string>
+    <string name="tokenToast">Token tidak tersedia</string>
+</resources>

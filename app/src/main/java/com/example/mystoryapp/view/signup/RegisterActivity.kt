@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.view.View
 import android.view.WindowInsets
 import android.view.WindowManager
-import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.activity.enableEdgeToEdge
@@ -19,7 +18,6 @@ import com.example.mystoryapp.data.viewmodel.RegisterViewModel
 import com.example.mystoryapp.databinding.ActivitySignupBinding
 import com.example.mystoryapp.view.ViewModelFactory
 import com.example.mystoryapp.view.login.LoginActivity
-import com.example.mystoryapp.view.main.MainActivity
 import com.google.android.material.snackbar.Snackbar
 
 class RegisterActivity : AppCompatActivity() {
@@ -71,13 +69,13 @@ class RegisterActivity : AppCompatActivity() {
 
             when {
                 name.isEmpty()-> {
-                    binding.nameEditText.error = "Kolom Nama harus diisi"
+                    binding.nameEditText.error = getString(R.string.nameValidation)
                 }
                 email.isEmpty()-> {
-                    binding.emailEditText.error  = "Email harus diisi"
+                    binding.emailEditText.error  = getString(R.string.emailValidation)
                 }
                 password.isEmpty()-> {
-                    binding.passwordEditText.error = "Password harus diisi"
+                    binding.passwordEditText.error = getString(R.string.passwordValidation)
                 } else -> {
                     isShowLoading(true)
                     viewModel.register(name, email, password)
@@ -85,8 +83,9 @@ class RegisterActivity : AppCompatActivity() {
                         if (success) {
                             AlertDialog.Builder(this).apply {
                                 setTitle("Yeah!")
-                                setMessage("Akun dengan $email sudah jadi nih. Yuk, login dan mulai berbagi cerita.")
-                                setPositiveButton("Lanjut") { _, _ ->
+                                val message = getString(R.string.account_created_message, email)
+                                setMessage(message)
+                                setPositiveButton(getString(R.string.next)) { _, _ ->
                                     val intent = Intent(context, LoginActivity::class.java)
                                     intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                     startActivity(intent)
@@ -96,7 +95,7 @@ class RegisterActivity : AppCompatActivity() {
                                 show()
                             }
                         } else {
-                            Snackbar.make(binding.root, "Registrasi gagal, Silahkan coba lagi!!.", Snackbar.LENGTH_SHORT).show()
+                            Snackbar.make(binding.root, getString(R.string.registerFailed), Snackbar.LENGTH_SHORT).show()
                         }
                         isShowLoading(false)
                     })

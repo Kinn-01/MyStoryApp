@@ -32,14 +32,10 @@ import retrofit2.HttpException
 class StoryAddActivity : AppCompatActivity() {
     private lateinit var binding: ActivityStoryAddBinding
     private lateinit var userPreference: UserPreference
-
-
     private var currentImageUri: Uri? = null
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-
         binding = ActivityStoryAddBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -49,14 +45,12 @@ class StoryAddActivity : AppCompatActivity() {
         binding.btnCamera.setOnClickListener { startCamera() }
         binding.uploadButton.setOnClickListener { uploadImage() }
 
-
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
     }
-
     private fun startGallery() {
         launcherGallery.launch(PickVisualMediaRequest(ActivityResultContracts.PickVisualMedia.ImageOnly))
     }
@@ -71,7 +65,6 @@ class StoryAddActivity : AppCompatActivity() {
             Log.d("Photo Picker", "No media selected")
         }
     }
-
     private fun startCamera() {
         currentImageUri = getImageUri(this)
         launcherIntentCamera.launch(currentImageUri!!)
@@ -84,12 +77,11 @@ class StoryAddActivity : AppCompatActivity() {
             showImage()
         }
     }
-
     private fun uploadImage() {
         val description = binding.descriptionText.text.toString()
 
         currentImageUri?.let { uri ->
-            val imageFile = uriToFile(uri, this)
+            val imageFile = uriToFile(uri, this).reduceFileImage()
             Log.d("Image File", "showImage: ${imageFile.path}")
 
             showLoading(true)
@@ -111,9 +103,9 @@ class StoryAddActivity : AppCompatActivity() {
                             showToast(successResponse.message)
 
                             AlertDialog.Builder(this@StoryAddActivity).apply {
-                                setTitle("Upload Berhasil")
-                                setMessage("Story berhasil diunggah!")
-                                setPositiveButton("Lanjut") { _, _ ->
+                                setTitle(getString(R.string.successUpload))
+                                setMessage(getString(R.string.succesStoryUpload))
+                                setPositiveButton(getString(R.string.next)) { _, _ ->
                                     val intent = Intent(this@StoryAddActivity, MainActivity::class.java).apply {
                                         flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
                                     }
@@ -132,25 +124,22 @@ class StoryAddActivity : AppCompatActivity() {
                             showLoading(false)
                         }
                     } else {
-                        showToast("Token tidak tersedia")
+                        showToast(getString(R.string.tokenToast))
                         showLoading(false)
                     }
                 }
             }
         } ?: showToast(getString(R.string.empty_image_warning))
     }
-
     private fun showImage() {
         currentImageUri?.let {
             Log.d("Image URI", "showImage: $it")
             binding.previewImageView.setImageURI(it)
         }
     }
-
     private fun showToast(message: String) {
         Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
     }
-
     private fun showLoading(isLoading: Boolean){
         if (isLoading){
             binding.progressBar.visibility = View.VISIBLE
@@ -158,6 +147,4 @@ class StoryAddActivity : AppCompatActivity() {
             binding.progressBar.visibility = View.INVISIBLE
         }
     }
-
-
 }

@@ -13,14 +13,11 @@ import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.lifecycleScope
 import com.example.mystoryapp.R
-import com.example.mystoryapp.data.preferences.UserPreference
 import com.example.mystoryapp.data.viewmodel.LoginViewModel
 import com.example.mystoryapp.databinding.ActivityLoginBinding
 import com.example.mystoryapp.view.ViewModelFactory
 import com.example.mystoryapp.view.main.MainActivity
-import kotlinx.coroutines.launch
 
 class LoginActivity : AppCompatActivity() {
 
@@ -65,10 +62,10 @@ class LoginActivity : AppCompatActivity() {
             val password = binding.passwordEditText.text.toString()
             when{
                 email.isEmpty()-> {
-                    binding.emailEditText.error = "Email harus diisi"
+                    binding.emailEditText.error = getString(R.string.emailValidation)
                 }
                 password.isEmpty()-> {
-                    binding.passwordEditText.error = "Password harus diisi"
+                    binding.passwordEditText.error = getString(R.string.passwordValidation)
                 } else-> {
                     loginViewModel.login(email, password)
                     ShowLoading(true)
@@ -85,8 +82,8 @@ class LoginActivity : AppCompatActivity() {
             } else {
                 AlertDialog.Builder(this).apply {
                     setTitle("Yeah!")
-                    setMessage("Login berhasil!")
-                    setPositiveButton("Lanjut") { _, _ ->
+                    setMessage(getString(R.string.successLogin))
+                    setPositiveButton(getString(R.string.next)) { _, _ ->
                         val intent = Intent(context, MainActivity::class.java)
                         intent.flags =
                             Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK

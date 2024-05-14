@@ -2,9 +2,17 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <group android:menuCategory="container">
+
+        <item
+            android:id="@+id/menuBahasa"
+            android:icon="@drawable/baseline_closed_caption_24"
+            android:title="@string/multiLanguage"
+            app:showAsAction="ifRoom" />
+
         <item
             android:id="@+id/itemMenu"
+            android:icon="@drawable/baseline_exit_to_app_24"
             android:title="@string/logout"
-            app:showAsAction="never" />
+            app:showAsAction="ifRoom" />
     </group>
 </menu>

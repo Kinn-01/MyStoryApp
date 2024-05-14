@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mystoryapp.data.preferences.UserModel
 import com.example.mystoryapp.data.repository.UserRepository
-import com.example.mystoryapp.data.retrofit.response.ErrorResponse
 import com.example.mystoryapp.data.retrofit.response.LoginResponse
 import com.google.gson.Gson
 import kotlinx.coroutines.launch

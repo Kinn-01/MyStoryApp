@@ -26,6 +26,7 @@ import com.example.mystoryapp.view.welcome.WelcomeActivity
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import android.provider.Settings
 
 class MainActivity : AppCompatActivity() {
 
@@ -57,13 +58,13 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this@MainActivity, StoryAddActivity::class.java))
         }
 
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
     }
-
     private fun observeLogout() {
         binding.barApp.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
@@ -72,9 +73,9 @@ class MainActivity : AppCompatActivity() {
                     binding.barApp.setOnMenuItemClickListener(null)
 
                     AlertDialog.Builder(this).apply {
-                        setTitle("Konfirmasi Logout")
-                        setMessage("Apakah Anda yakin ingin logout?")
-                        setPositiveButton("Ya") { dialog, _ ->
+                        setTitle(getString(R.string.exitConfirm))
+                        setMessage(getString(R.string.exit))
+                        setPositiveButton(getString(R.string.yes)) { dialog, _ ->
                             dialog.dismiss()
 
                             // Lakukan logout setelah dialog dikonfirmasi
@@ -91,7 +92,7 @@ class MainActivity : AppCompatActivity() {
                             startActivity(intent)
                             finish()
                         }
-                        setNegativeButton("Tidak") { dialog, _ ->
+                        setNegativeButton(getString(R.string.no)) { dialog, _ ->
                             dialog.dismiss()
                             // Mengembalikan event onClickListener setelah dialog ditutup
                             binding.barApp.setOnMenuItemClickListener { innerMenuItem ->
@@ -102,6 +103,10 @@ class MainActivity : AppCompatActivity() {
                         create()
                         show()
                     }
+                    true
+                }
+                R.id.menuBahasa -> {
+                    startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
                     true
                 }
                 else -> false
@@ -133,7 +138,7 @@ class MainActivity : AppCompatActivity() {
                 binding.rvStories.layoutManager = LinearLayoutManager(this)
             } else {
                 // Tangani jika daftar cerita kosong
-                Toast.makeText(this, "Daftar cerita kosong", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.emptyStory), Toast.LENGTH_SHORT).show()
 
                 // Atur adapter dan RecyclerView menjadi null atau kosong
                 this.storiesAdapter = StoryAdapter(mutableListOf(), object : StoryAdapter.OnAdapterListener {

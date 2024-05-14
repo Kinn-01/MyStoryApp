@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Mi Historia</string>
+    <string name="signup">Registrarse</string>
+    <string name="login">Iniciar sesión</string>
+    <string name="message_welcome_page">Contar historias es el arte de encadenar palabras para dar vida a imágenes y atraer al oyente o lector a un mundo de imaginación.</string>
+    <string name="title_welcome_page">¡Bienvenido a MyStoryApp!</string>
+    <string name="title_signup_page">Complete sus datos a continuación</string>
+    <string name="email">Correo electrónico</string>
+    <string name="password">Contraseña</string>
+    <string name="message_login_page">Primero ingrese sus datos</string>
+    <string name="title_login_page">¿Estás listo para compartir tu historia?</string>
+    <string name="name">Nombre</string>
+    <string name="logout">Salir</string>
+    <string name="add_Story_text">Botón Agregar Historia</string>
+    <string name="story_image">Imagen de la Historia</string>
+    <string name="alert_invalid_email">Correo electrónico no válido</string>
+    <string name="tanggal_dibuat">Creado en</string>
+    <string name="nama_pengarang">Nombre del Autor</string>
+    <string name="deskripsi_cerita">Descripción de la Historia</string>
+    <string name="detailStory">Detalle de la Historia</string>
+    <string name="upload">Subir\n</string>
+    <string name="description">Descripción</string>
+    <string name="image_preview">Vista previa de la Imagen</string>
+    <string name="camera">Cámara</string>
+    <string name="gallery">Galería</string>
+    <string name="empty_image_warning">La imagen no debe estar vacía</string>
+    <string name="multiLanguage">Configuración de idioma</string>
+    <string name="exitConfirm">Confirmación de salida</string>
+    <string name="exit">¿Estás seguro de que quieres salir?</string>
+    <string name="yes">Sí</string>
+    <string name="no">No</string>
+    <string name="emptyStory">Lista de historias vacía</string>
+    <string name="emailValidation">El correo electrónico debe estar lleno</string>
+    <string name="nameValidation">El nombre debe estar lleno</string>
+    <string name="passwordValidation">La contraseña debe estar llena</string>
+    <string name="successLogin">Inicio de sesión exitoso</string>
+    <string name="next">Siguiente</string>
+    <string name="account_created_message">La cuenta con %1$s está lista. Inicia sesión y comienza a compartir historias.</string>
+    <string name="registerFailed">¡Registro fallido, por favor intente de nuevo!</string>
+    <string name="successUpload">Subida exitosa</string>
+    <string name="succesStoryUpload">Historia subida con éxito</string>
+    <string name="tokenToast">El token no está disponible</string>
+</resources>
