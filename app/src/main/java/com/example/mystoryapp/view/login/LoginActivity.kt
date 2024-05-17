@@ -27,7 +27,6 @@ class LoginActivity : AppCompatActivity() {
         ViewModelFactory.getInstance(this)
     }
     private lateinit var binding: ActivityLoginBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -45,7 +44,6 @@ class LoginActivity : AppCompatActivity() {
             insets
         }
     }
-
     private fun setupView() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -58,7 +56,6 @@ class LoginActivity : AppCompatActivity() {
         }
         supportActionBar?.hide()
     }
-
     private fun setupAction() {
         binding.loginButton.setOnClickListener {
             val email = binding.emailEditText.text.toString()
@@ -103,13 +100,11 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun observeLoadingState() {
         loginViewModel.isLoading.observe(this) { isLoading ->
             ShowLoading(isLoading)
         }
     }
-
     private fun observeErrorState() {
         loginViewModel.isError.observe(this) { errorMessage ->
             if (!errorMessage.isNullOrEmpty()) {
@@ -118,11 +113,9 @@ class LoginActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun showError(errorMessage: String) {
         Toast.makeText(this, errorMessage, Toast.LENGTH_SHORT).show()
     }
-
     private fun ShowLoading(isLoading: Boolean){
         if (isLoading){
             binding.progressBar.visibility = View.VISIBLE
@@ -130,7 +123,6 @@ class LoginActivity : AppCompatActivity() {
             binding.progressBar.visibility = View.INVISIBLE
         }
     }
-
     private fun playAnimation() {
         ObjectAnimator.ofFloat(binding.imageView, View.TRANSLATION_X, -30f, 30f).apply {
             duration = 6000

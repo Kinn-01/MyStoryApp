@@ -11,7 +11,6 @@ import com.google.gson.Gson
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
-
 class RegisterViewModel(private val userRepository: UserRepository) : ViewModel() {
 
     private val _registerResponse = MutableLiveData<RegisterResponse>()

@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Base.Theme.MyStoryApp" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your dark theme here. -->
-         <item name="colorPrimary">@color/my_dark_primary</item>
+<!--         <item name="colorPrimary">@color/my_dark_primary</item>-->
     </style>
 
-    <color name="my_dark_primary" tools:ignore="MissingDefaultResource">#F3DCDA</color>
+<!--    <color name="my_dark_primary" tools:ignore="MissingDefaultResource">#F3DCDA</color>-->
 </resources>

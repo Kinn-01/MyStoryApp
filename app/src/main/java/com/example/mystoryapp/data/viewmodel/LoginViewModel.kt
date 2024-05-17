@@ -1,7 +1,5 @@
 package com.example.mystoryapp.data.viewmodel
 
-import android.content.ContentValues.TAG
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,7 +20,6 @@ class LoginViewModel(private val UserRepository: UserRepository) : ViewModel() {
 
     private val _loginResponse = MutableLiveData<LoginResponse>()
     val loginResponse: LiveData<LoginResponse> = _loginResponse
-
     fun login(email: String, password: String) {
         _isLoading.value = true
         viewModelScope.launch {

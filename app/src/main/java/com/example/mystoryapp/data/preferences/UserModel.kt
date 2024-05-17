@@ -1,5 +1,4 @@
 package com.example.mystoryapp.data.preferences
-
 data class UserModel(
     val userId: String,
     val name: String,

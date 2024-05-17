@@ -38,7 +38,6 @@ class DetailStoryActivity : AppCompatActivity() {
             insets
         }
     }
-
     private fun DetailView(photoUrl: String?, createdAt: String?, name: String?, description: String?, lon: Double, id: String?, lat: Double) {
         Glide.with(this@DetailStoryActivity)
             .load(photoUrl)
@@ -48,7 +47,6 @@ class DetailStoryActivity : AppCompatActivity() {
         binding.tvDesc.text = description
         binding.tvDate.text = createdAt
     }
-
     companion object {
         const val EXTRA_PHOTO_URL = "EXTRA_PHOTO_URL"
         const val EXTRA_CREATED_AT = "EXTRA_CREATED_AT"

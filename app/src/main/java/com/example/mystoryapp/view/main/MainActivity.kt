@@ -35,7 +35,6 @@ class MainActivity : AppCompatActivity() {
     }
     private lateinit var binding: ActivityMainBinding
     private lateinit var storiesAdapter: StoryAdapter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -109,6 +108,10 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
                     true
                 }
+//                R.id.menuMaps -> {
+//                    startActivity(Intent(this@MainActivity, MapsActivity::class.java))
+//                    true
+//                }
                 else -> false
             }
         }
@@ -151,7 +154,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun navigateToDetailStory(story: ListStoryItem) {
         val intent = Intent(this@MainActivity, DetailStoryActivity::class.java)
         intent.putExtra(DetailStoryActivity.EXTRA_PHOTO_URL, story.photoUrl)
@@ -163,7 +165,6 @@ class MainActivity : AppCompatActivity() {
         intent.putExtra(DetailStoryActivity.EXTRA_LAT, story.lat)
         startActivity(intent)
     }
-
     private fun setupView() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {

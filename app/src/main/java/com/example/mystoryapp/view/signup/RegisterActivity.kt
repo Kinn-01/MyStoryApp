@@ -47,7 +47,6 @@ class RegisterActivity : AppCompatActivity() {
             insets
         }
     }
-
     private fun setupView() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -60,7 +59,6 @@ class RegisterActivity : AppCompatActivity() {
         }
         supportActionBar?.hide()
     }
-
    private fun setupAction() {
         binding.signupButton.setOnClickListener {
             val name = binding.nameEditText.text.toString()

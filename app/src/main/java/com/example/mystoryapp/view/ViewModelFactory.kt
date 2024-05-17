@@ -25,7 +25,6 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
     }
-
     companion object {
         @Volatile
         private var INSTANCE: ViewModelFactory? = null

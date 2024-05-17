@@ -13,7 +13,6 @@ import com.google.gson.Gson
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
-
 class MainViewModel(private val repository: UserRepository) : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
@@ -41,11 +40,9 @@ class MainViewModel(private val repository: UserRepository) : ViewModel() {
             _Message.value = errorMessage ?: "Unknown error"
         }
     }
-
     fun getSession(): LiveData<UserModel> {
         return repository.getSession().asLiveData()
     }
-
     fun logout() {
         viewModelScope.launch {
             repository.logout()

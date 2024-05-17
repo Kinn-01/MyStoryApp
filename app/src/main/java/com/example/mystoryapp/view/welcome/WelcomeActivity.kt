@@ -18,9 +18,7 @@ import com.example.mystoryapp.view.login.LoginActivity
 import com.example.mystoryapp.view.signup.RegisterActivity
 
 class WelcomeActivity : AppCompatActivity() {
-
     private lateinit var binding: ActivityWelcomeBinding
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -37,7 +35,6 @@ class WelcomeActivity : AppCompatActivity() {
             insets
         }
     }
-
     private fun setupView() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
@@ -60,7 +57,6 @@ class WelcomeActivity : AppCompatActivity() {
             startActivity(Intent(this, RegisterActivity::class.java))
         }
     }
-
     private fun playAnimation() {
         ObjectAnimator.ofFloat(binding.imageView, View.TRANSLATION_X, -30f, 30f).apply {
             duration = 6000
