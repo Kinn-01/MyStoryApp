@@ -41,4 +41,6 @@
     <string name="successUpload">Subida exitosa</string>
     <string name="succesStoryUpload">Historia subida con éxito</string>
     <string name="tokenToast">El token no está disponible</string>
+    <string name="menu_maps">Menu Maps</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

@@ -41,5 +41,7 @@
     <string name="successUpload">Téléchargement réussi</string>
     <string name="succesStoryUpload">Histoire téléchargée avec succès</string>
     <string name="tokenToast">Le jeton n\'est pas disponible</string>
+    <string name="menu_maps">Menu Maps</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
 

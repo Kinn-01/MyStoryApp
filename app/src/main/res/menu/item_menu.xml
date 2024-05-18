@@ -2,11 +2,11 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <group android:menuCategory="container">
-<!--        <item-->
-<!--            android:id="@+id/menuMaps"-->
-<!--            android:icon="@drawable/baseline_maps_24"-->
-<!--            android:title="@string/maps"-->
-<!--            app:showAsAction="ifRoom" />-->
+        <item
+            android:id="@+id/menuMaps"
+            android:icon="@drawable/baseline_maps_24"
+            android:title="@string/menu_maps"
+            app:showAsAction="ifRoom" />
 
         <item
             android:id="@+id/menuBahasa"

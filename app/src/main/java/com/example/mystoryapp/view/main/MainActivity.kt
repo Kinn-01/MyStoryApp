@@ -27,6 +27,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import android.provider.Settings
+import com.example.mystoryapp.view.maps.MapsActivity
 
 class MainActivity : AppCompatActivity() {
 
@@ -81,7 +82,7 @@ class MainActivity : AppCompatActivity() {
                             viewModel.logout()
 
                             // Mengembalikan event onClickListener setelah dialog ditutup
-                            binding.barApp.setOnMenuItemClickListener { innerMenuItem ->
+                            binding.barApp.setOnMenuItemClickListener {
                                 observeLogout()
                                 true
                             }
@@ -94,7 +95,7 @@ class MainActivity : AppCompatActivity() {
                         setNegativeButton(getString(R.string.no)) { dialog, _ ->
                             dialog.dismiss()
                             // Mengembalikan event onClickListener setelah dialog ditutup
-                            binding.barApp.setOnMenuItemClickListener { innerMenuItem ->
+                            binding.barApp.setOnMenuItemClickListener {
                                 observeLogout()
                                 true
                             }
@@ -108,10 +109,10 @@ class MainActivity : AppCompatActivity() {
                     startActivity(Intent(Settings.ACTION_LOCALE_SETTINGS))
                     true
                 }
-//                R.id.menuMaps -> {
-//                    startActivity(Intent(this@MainActivity, MapsActivity::class.java))
-//                    true
-//                }
+                R.id.menuMaps -> {
+                    startActivity(Intent(this@MainActivity, MapsActivity::class.java))
+                    true
+                }
                 else -> false
             }
         }

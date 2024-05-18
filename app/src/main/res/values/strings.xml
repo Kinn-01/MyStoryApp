@@ -40,4 +40,6 @@
     <string name="successUpload">Upload successful</string>
     <string name="succesStoryUpload">Story uploaded successfully</string>
     <string name="tokenToast">Token is not available</string>
+    <string name="menu_maps">Menu Maps</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>

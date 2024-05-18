@@ -41,4 +41,6 @@
     <string name="successUpload">Upload Berhasil</string>
     <string name="succesStoryUpload">Cerita Berhasil Diunggah</string>
     <string name="tokenToast">Token tidak tersedia</string>
+    <string name="menu_maps">Menu Maps</string>
+    <string name="title_activity_maps">MapsActivity</string>
 </resources>
