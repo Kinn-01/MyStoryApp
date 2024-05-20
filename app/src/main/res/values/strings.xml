@@ -42,4 +42,5 @@
     <string name="tokenToast">Token is not available</string>
     <string name="menu_maps">Menu Maps</string>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="include_location">Include Location</string>
 </resources>

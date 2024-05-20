@@ -8,6 +8,7 @@ import com.example.mystoryapp.data.viewmodel.LoginViewModel
 import com.example.mystoryapp.data.viewmodel.RegisterViewModel
 import com.example.mystoryapp.di.Injection
 import com.example.mystoryapp.view.main.MainViewModel
+import com.example.mystoryapp.view.maps.MapsViewModel
 
 class ViewModelFactory(private val repository: UserRepository) : ViewModelProvider.NewInstanceFactory() {
     @Suppress("UNCHECKED_CAST")
@@ -21,6 +22,9 @@ class ViewModelFactory(private val repository: UserRepository) : ViewModelProvid
             }
             modelClass.isAssignableFrom(RegisterViewModel::class.java) -> {
                 RegisterViewModel(repository) as T
+            }
+            modelClass.isAssignableFrom(MapsViewModel::class.java) -> {
+                MapsViewModel(repository) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

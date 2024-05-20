@@ -68,6 +68,16 @@
             app:layout_constraintTop_toTopOf="@+id/btnCamera"
             app:layout_constraintVertical_bias="1.0" />
 
+        <CheckBox
+            android:id="@+id/checkBoxLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginTop="16dp"
+            android:text="@string/include_location"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+
         <Button
             android:id="@+id/uploadButton"
             android:layout_width="0dp"
@@ -79,7 +89,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/descriptionText" />
+            app:layout_constraintTop_toBottomOf="@+id/checkBoxLocation" />
 
         <ProgressBar
             android:id="@+id/progressBar"

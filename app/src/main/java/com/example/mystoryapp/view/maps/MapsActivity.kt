@@ -2,8 +2,10 @@ package com.example.mystoryapp.view.maps
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.widget.Toast
+import androidx.activity.viewModels
 import com.example.mystoryapp.R
-
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -11,11 +13,19 @@ import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
 import com.example.mystoryapp.databinding.ActivityMapsBinding
+import com.example.mystoryapp.view.ViewModelFactory
+import com.google.android.gms.maps.model.LatLngBounds
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
     private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
+
+    private val viewModel by viewModels<MapsViewModel> {
+        ViewModelFactory.getInstance(this)
+    }
+
+    private val boundsBuilder = LatLngBounds.Builder()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -46,9 +56,65 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         mMap.uiSettings.isCompassEnabled = true
         mMap.uiSettings.isMapToolbarEnabled = true
 
-        // Add a marker in Sydney and move the camera
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        mMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))
+        val unitToString: Unit = getUser()
+        val resultUnitToString: String = unitToString.toString()
+
+        Log.e("Token ane", "token : $resultUnitToString")
+
+
+
+        getUser()
+        addManyMarker()
     }
+    private fun addManyMarker() {
+        viewModel.mapsResponse.observe(this) { data ->
+
+            var hasValidMarkers = false
+
+            data.listStory.forEach { story ->
+                val lat = story.lat
+                val lon = story.lon
+
+                if (lat != null && lon != null) {
+                    val latLng = LatLng(lat, lon)
+                    mMap.addMarker(
+                        MarkerOptions()
+                            .position(latLng)
+                            .title(story.name)
+                            .snippet(story.description)
+                    )
+                    boundsBuilder.include(latLng)
+                    hasValidMarkers = true
+                } else{
+                    Log.e(TAG, "Invalid latLng: lat=$lat, lon=$lon")
+                }
+            }
+
+            if (hasValidMarkers) {
+                val bounds: LatLngBounds = boundsBuilder.build()
+                mMap.animateCamera(
+                    CameraUpdateFactory.newLatLngBounds(
+                        bounds,
+                        resources.displayMetrics.widthPixels,
+                        resources.displayMetrics.heightPixels,
+                        300
+                    )
+                )
+            }
+        }
+    }
+    private fun getUser(): Unit {
+        viewModel.user.observe(this) { user ->
+            val token = user.token
+            Toast.makeText(this@MapsActivity, "Token $token", Toast.LENGTH_SHORT).show()
+            Log.d("My Token", "Token Gw : $token")
+
+            viewModel.getAllStoryLocation("Bearer $token")
+        }
+    }
+    companion object {
+        private const val TAG = "MapsActivity"
+        const val EXTRA_TOKEN = "extra_token"
+    }
+
 }
