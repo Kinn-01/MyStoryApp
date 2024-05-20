@@ -41,7 +41,6 @@ fun getImageUri(context: Context): Uri {
     }
     return uri ?: getImageUriForPreQ(context)
 }
-
 private fun getImageUriForPreQ(context: Context): Uri {
     val filesDir = context.getExternalFilesDir(Environment.DIRECTORY_PICTURES)
     val imageFile = File(filesDir, "/MyCamera/$timeStamp.jpg")
@@ -53,7 +52,6 @@ private fun getImageUriForPreQ(context: Context): Uri {
     )
     //content://com.dicoding.picodiploma.mycamera.fileprovider/my_images/MyCamera/20230825_133659.jpg
 }
-
 fun File.reduceFileImage(): File {
     val file = this
     val bitmap = BitmapFactory.decodeFile(file.path).getRotatedBitmap(file)
@@ -69,7 +67,6 @@ fun File.reduceFileImage(): File {
     bitmap?.compress(Bitmap.CompressFormat.JPEG, compressQuality, FileOutputStream(file))
     return file
 }
-
 fun Bitmap.getRotatedBitmap(file: File): Bitmap? {
     val orientation = ExifInterface(file).getAttributeInt(
         ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_UNDEFINED

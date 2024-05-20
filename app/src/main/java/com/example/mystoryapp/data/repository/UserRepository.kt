@@ -12,11 +12,9 @@ import com.example.mystoryapp.data.retrofit.api.ApiService
 import com.example.mystoryapp.data.retrofit.response.ListStoryItem
 import com.example.mystoryapp.data.retrofit.response.LoginResponse
 import com.example.mystoryapp.data.retrofit.response.RegisterResponse
-import com.example.mystoryapp.data.retrofit.response.StoryResponse
 import kotlinx.coroutines.flow.Flow
 
 class UserRepository private constructor(private val userPreference: UserPreference, private val apiService: ApiService) {
-
     fun getSession(): Flow<UserModel> {
         return userPreference.getSession()
     }
@@ -37,7 +35,6 @@ class UserRepository private constructor(private val userPreference: UserPrefere
             }
         ).liveData
     }
-
     suspend fun getStoryLocation(token: String) = apiService.getStoriesWithLocation(token)
     suspend fun setAuth(user: UserModel) = userPreference.saveSession(user)
     suspend fun logout() {

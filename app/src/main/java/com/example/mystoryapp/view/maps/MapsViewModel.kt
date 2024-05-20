@@ -7,11 +7,8 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.mystoryapp.data.preferences.UserModel
 import com.example.mystoryapp.data.repository.UserRepository
-import com.example.mystoryapp.data.retrofit.response.ErrorResponse
 import com.example.mystoryapp.data.retrofit.response.StoryResponse
 import com.google.gson.Gson
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 
@@ -28,7 +25,6 @@ class MapsViewModel(private val repository: UserRepository) : ViewModel() {
     init {
         getUser()
     }
-
     private fun getUser() {
         viewModelScope.launch {
             repository.getSession().collect { user ->
@@ -36,7 +32,6 @@ class MapsViewModel(private val repository: UserRepository) : ViewModel() {
             }
         }
     }
-
     fun getAllStoryLocation(token: String) {
         _isLoading.postValue(true)
         viewModelScope.launch {
@@ -53,7 +48,6 @@ class MapsViewModel(private val repository: UserRepository) : ViewModel() {
             }
         }
     }
-
     companion object {
         private const val TAG = "MainViewModel"
     }

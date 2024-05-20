@@ -14,12 +14,9 @@ import kotlinx.coroutines.launch
 class MainViewModel(private val repository: UserRepository) : ViewModel() {
     private val _isLoading = MutableLiveData<Boolean>()
     val isLoading: LiveData<Boolean> get() = _isLoading
-
     val listStory: LiveData<PagingData<ListStoryItem>> = repository.getStory().cachedIn(viewModelScope)
-
     private val _Message = MutableLiveData<String>()
     val  message: LiveData<String> get() = _Message
-
     fun getSession(): LiveData<UserModel> {
         return repository.getSession().asLiveData()
     }

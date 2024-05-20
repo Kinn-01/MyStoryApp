@@ -24,7 +24,6 @@ interface ApiService {
         @Field("email") email: String,
         @Field("password") password: String
     ): RegisterResponse
-
     // Login
     @FormUrlEncoded
     @POST("login")
@@ -32,7 +31,6 @@ interface ApiService {
         @Field("email") email: String,
         @Field("password") password: String
     ): LoginResponse
-
     // Post Story
     @Multipart
     @POST("stories")
@@ -41,7 +39,6 @@ interface ApiService {
         @Part file: MultipartBody.Part,
         @Part("description") description: RequestBody,
     ): FileUploadResponse
-
     // Get Story
     @GET("stories")
     suspend fun getStory(
@@ -49,7 +46,6 @@ interface ApiService {
         @Query("page") page: Int,
         @Query("size") size: Int
     ) : StoryResponse
-
     // Get Story With Location
     @GET("stories")
     suspend fun getStoriesWithLocation(

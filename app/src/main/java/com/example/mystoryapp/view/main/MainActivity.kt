@@ -31,7 +31,6 @@ class MainActivity : AppCompatActivity() {
     }
     private lateinit var binding: ActivityMainBinding
     private lateinit var storiesAdapter: StoryPagingDataAdapter
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -54,7 +53,6 @@ class MainActivity : AppCompatActivity() {
             insets
         }
     }
-
     private fun observeLogout() {
         binding.barApp.setOnMenuItemClickListener { menuItem ->
             when (menuItem.itemId) {
@@ -103,7 +101,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun observeSession() {
         viewModel.getSession().observe(this) { user ->
             if (!user.isLogin) {
@@ -112,7 +109,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
-
     private fun setupRecyclerView() {
         storiesAdapter = StoryPagingDataAdapter(object : StoryPagingDataAdapter.OnAdapterListener {
             override fun onClick(story: ListStoryItem) {
@@ -124,19 +120,16 @@ class MainActivity : AppCompatActivity() {
             adapter = storiesAdapter
         }
     }
-
     private fun observeListStory() {
         viewModel.listStory.observe(this) { pagingData ->
             storiesAdapter.submitData(lifecycle, pagingData)
         }
     }
-
     private fun navigateToDetailStory(story: ListStoryItem) {
         val intent = Intent(this, DetailStoryActivity::class.java)
         intent.putExtra(DetailStoryActivity.EXTRA_STORY_ITEM, story)
         startActivity(intent)
     }
-
     private fun setupView() {
         @Suppress("DEPRECATION")
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R) {
